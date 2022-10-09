@@ -13,10 +13,9 @@ function Nav() {
         }else {
             handleShow(false)
         }
-    }
+    };
 
     useEffect(() => {
-
         window.addEventListener("scroll", transitionNavBar);
         return () => window.removeEventListener("scroll", transitionNavBar)
 
@@ -24,30 +23,27 @@ function Nav() {
 
 
   return (
-    <div className='nav'>
-
         <div className={`nav ${show && 'nav__black'}`}>
         <div className='nav__contents'>
 
         <img
+        onClick={() => navigate('/')}
          className='nav__logo'
          src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png' 
-             alt='' />
+             alt='' 
+        />
 
         <img
-        onClick={() => navigate.push('/profile')}
+        onClick={() => navigate('/profile')}
         className='nav__avatar'
-         src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bdc9a33850498.56ba69ac2ba5b.png' alt=''/>
-
+         src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/1bdc9a33850498.56ba69ac2ba5b.png' alt=''
+        />
 
         
-    </div>
+        </div>
+        </div>
 
-    </div>
-
-    </div>
-
-  )
+  );
 }
 
 export default Nav
