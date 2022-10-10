@@ -15,11 +15,13 @@ function ProfileScreen() {
         <div className='profileScreen__body'>
             <h1>Edit Profile</h1>
             <div className='profileScreen__info'>
-                <img src='https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg' 
+                <img src='https://i.pinimg.com/originals/34/62/d2/3462d27440aa255b1c314ff16f4032b4.png' 
                      alt='' />
                 <div className='profileScreen__details'>
                     <h2>{user.email}</h2>
                     <div className='profileScreen__plans'>
+                        <h3>Plans</h3>
+
                         <button 
                         onClick={() => auth.signOut()} 
                         className='profileScreen__signOut'>Sign Out</button>
