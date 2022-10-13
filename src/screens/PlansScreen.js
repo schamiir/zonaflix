@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import "./PlansScreen.css"
 import db from '../firebase';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 
 function PlansScreen() {
     const [products, setProducts] = useState([]);
+    const user = useSelector(selectUser);
 
     useEffect(() => {
         db.collection('products')
@@ -30,7 +33,18 @@ function PlansScreen() {
     console.log(products)
 
     const loadCheckout = async (priceId) => {
+        const docRef = await db
+        .collection('customers')
+        .doc(user.uid)
+        .collection('checkout_session')
+        .add({
+            price: priceId,
+            success_url: window.location.origin,
+            cancel_url: window.location.origin,
+        });
+
         
+
     }
 
 
