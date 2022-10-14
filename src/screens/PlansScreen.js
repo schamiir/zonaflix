@@ -3,6 +3,7 @@ import "./PlansScreen.css"
 import db from '../firebase';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../features/userSlice';
+import { loadStripe } from "@stripe/stripe-js"
 
 function PlansScreen() {
     const [products, setProducts] = useState([]);
@@ -36,16 +37,33 @@ function PlansScreen() {
         const docRef = await db
         .collection('customers')
         .doc(user.uid)
-        .collection('checkout_session')
+        .collection('checkout_sessions')
         .add({
             price: priceId,
             success_url: window.location.origin,
             cancel_url: window.location.origin,
         });
 
-        
+        docRef.onSnapshot(async(snap) => {
+            const { error, sessionId } = snap.data();
 
-    }
+            if (error){
+                // Show an error to your customer and
+                // inspect your Cloud Function in the Firebase console
+                alert(`An error has occured: ${error.message}`);
+            }
+
+            if(sessionId) {
+                /* 
+                We have a session, let's redirect to Checkout
+                Init Stripe
+                */
+               const stripe = await loadStripe('pk_test_51Lrm3kBEE7fAGM5jD72LyN4AkVMa3aIKWFQx7NQ5j4v2SaJRbEHdjE0jcLf8AdJiRlixQs5Wqkj5f6TZ3Bth5TaC007zBfp0hK');
+               stripe.redirectToCheckout({ sessionId });
+            }
+        });
+
+    };
 
 
   return (
