@@ -26,7 +26,7 @@ function PlansScreen() {
             });
         });
 
-    }, []);
+    });
 
     useEffect(() => {
         db.collection('products')
