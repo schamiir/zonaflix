@@ -11,7 +11,7 @@ function LoginScreen() {
     <div class="loginScreen__background">
         <img 
         className="loginScreen__logo"
-            src="https://www.edigitalagency.com.au/wp-content/uploads/Netflix-logo-red-black-png.png" 
+            src="https://i.imgur.com/Z635Ivt.png" 
             alt=""
             />
 
